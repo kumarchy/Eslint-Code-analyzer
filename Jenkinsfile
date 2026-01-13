@@ -38,10 +38,10 @@ pipeline {
         stage('Run Salesforce Code Analyzer') {
             steps {
                 bat '''
-                  sf scanner run --format=csv --outfile=CodeScanReport.csv --target "./force-app" || true
-                  sf scanner run dfa --format=csv --outfile=DFA_Report.csv --target "./force-app" || true
-                  sf scanner run pmd --format=csv --outfile=PMD_Report.csv --target "./force-app" || true
-                  sf scanner run lwc --format=csv --outfile=LWC_Report.csv --target "./force-app" || true
+                  sf scanner run --format=csv --outfile=CodeScanReport.csv --target "./force-app" 
+                  sf scanner run dfa --format=csv --outfile=DFA_Report.csv --target "./force-app" 
+                  sf scanner run pmd --format=csv --outfile=PMD_Report.csv --target "./force-app" 
+                  sf scanner run lwc --format=csv --outfile=LWC_Report.csv --target "./force-app"
                 '''
             }
         }
