@@ -27,15 +27,6 @@ pipeline {
             }
         }
 
-        stage('Install Salesforce Code Analyzer') {
-            steps {
-                bat '''
-                  sf plugins install @salesforce/code-analyzer
-                  sf plugins
-                '''
-            }
-        }
-
         stage('Run ESLint (LWC JS)') {
             steps {
                 bat '''
