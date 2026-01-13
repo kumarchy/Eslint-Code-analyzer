@@ -19,7 +19,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
+                bat '''
                   node -v
                   npm -v
                   npm install --legacy-peer-deps
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Install Salesforce Code Analyzer') {
             steps {
-                sh '''
+                bat '''
                   sf plugins install @salesforce/code-analyzer
                   sf plugins
                 '''
@@ -38,7 +38,7 @@ pipeline {
 
         stage('Run ESLint (LWC JS)') {
             steps {
-                sh '''
+                bat '''
                   npx eslint "force-app/**/*.js" -f html -o eslint-report.html || true
                 '''
             }
@@ -46,7 +46,7 @@ pipeline {
 
         stage('Run Salesforce Code Analyzer') {
             steps {
-                sh '''
+                bat '''
                   sf scanner run --format=csv --outfile=CodeScanReport.csv --target "./force-app" || true
                   sf scanner run dfa --format=csv --outfile=DFA_Report.csv --target "./force-app" || true
                   sf scanner run pmd --format=csv --outfile=PMD_Report.csv --target "./force-app" || true
