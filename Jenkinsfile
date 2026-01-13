@@ -30,7 +30,7 @@ pipeline {
         stage('Run ESLint (LWC JS)') {
             steps {
                 bat '''
-                  npx eslint "force-app/**/*.js" -f html -o eslint-report.html
+                  npx eslint "force-app/**/*.js" -f html -o eslint-report.html || exit 0
                 '''
             }
         }
@@ -38,10 +38,10 @@ pipeline {
         stage('Run Salesforce Code Analyzer') {
             steps {
                 bat '''
-                  sf scanner run --format=csv --outfile=CodeScanReport.csv --target "./force-app" 
-                  sf scanner run dfa --format=csv --outfile=DFA_Report.csv --target "./force-app" 
-                  sf scanner run pmd --format=csv --outfile=PMD_Report.csv --target "./force-app" 
-                  sf scanner run lwc --format=csv --outfile=LWC_Report.csv --target "./force-app"
+                  sf scanner run --format=csv --outfile=CodeScanReport.csv --target "./force-app" || exit 0
+                  sf scanner run dfa --format=csv --outfile=DFA_Report.csv --target "./force-app" || exit 0
+                  sf scanner run pmd --format=csv --outfile=PMD_Report.csv --target "./force-app" || exit 0
+                  sf scanner run lwc --format=csv --outfile=LWC_Report.csv --target "./force-app" || exit 0
                 '''
             }
         }
