@@ -30,7 +30,7 @@ pipeline {
         stage('Run ESLint (LWC JS)') {
             steps {
                 bat '''
-                  npx eslint "force-app/**/*.js" -f html -o eslint-report.html || true
+                  npx eslint "force-app/**/*.js" -f html -o eslint-report.html
                 '''
             }
         }
